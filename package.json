@@ -4,7 +4,7 @@
     "plugins": ["syntax-dynamic-import", "react-loadable/babel"]
   },
   "scripts": {
-    "build": "webpack -p --config config/webpack.prod.js",
+    "build": "rm -rf build && webpack --config config/webpack.prod.js",
     "start": "webpack-dev-server --config config/webpack.dev.js"
   },
   "dependencies": {
