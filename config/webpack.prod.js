@@ -11,7 +11,7 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, "..", "build"),
     filename: "[name].[chunkhash].js"
   },
-  devtool: "inline-source-map",
+  devtool: "source-map",
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("production")
