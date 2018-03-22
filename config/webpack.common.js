@@ -1,38 +1,60 @@
-const webpack = require("webpack");
-const path = require("path");
+const path = require('path');
+const { readdirSync } = require('fs');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const rootDirectory = 'src';
+const pathToRoot = path.resolve(__dirname, '..', rootDirectory);
 
 module.exports = {
-  context: path.resolve(__dirname, "..", "src"),
+  context: path.resolve(__dirname, '..', 'src'),
   entry: {
-    main: "./client.js",
-    vendor: ["react", "react-dom", "react-router", "react-helmet"]
+    main: './client',
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      minChunks: Infinity
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "runtime"
-    })
-  ],
+  output: {
+    path: path.resolve(__dirname, '..', 'build'),
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/i,
-        use: "babel-loader",
-        exclude: /node_modules/
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(gif|jpe?g|png)$/i,
-        use: {
-          loader: "file-loader",
-          options: { emitFile: false }
-        }
-      }
-    ]
+        test: /\.jsx?$/i,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(gif|jpe?g|svg|png|woff2?)$/i,
+        use: 'file-loader',
+      },
+    ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: './index.ejs',
+      // Options
+      appMountId: 'app',
+      chunksSortMode: 'none',
+      lang: 'en',
+      meta: [
+        { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+        { charset: 'utf-8' },
+      ],
+      title: 'Manifold',
+    }),
+  ],
   resolve: {
-    modules: ["node_modules", path.resolve(__dirname, "..", "src")]
-  }
+    alias: readdirSync(pathToRoot).reduce((obj, ref) => {
+      const alias = ref.indexOf('.') > 0 ? ref.split('.')[0] : ref;
+      obj[alias] = path.resolve(__dirname, '..', rootDirectory, ref);
+      return obj;
+    }, {}),
+    extensions: ['.js', '.jsx'],
+  },
+  node: {
+    fs: 'empty',
+  },
 };
