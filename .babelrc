@@ -10,5 +10,19 @@
       { "targets": { "browsers": ["last 2 versions", "> 1%"] } }
     ],
     "@babel/preset-react"
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["transform-dynamic-import"],
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": { "node": ">=8.6" }
+          }
+        ],
+        "@babel/preset-react"
+      ]
+    }
+  }
 }
