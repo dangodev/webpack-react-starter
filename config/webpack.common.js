@@ -8,28 +8,28 @@ const pathToRoot = path.resolve(__dirname, '..', rootDirectory);
 module.exports = {
   context: path.resolve(__dirname, '..', 'src'),
   entry: {
-    main: './client'
+    main: './client',
   },
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.jsx?$/i,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(gif|jpe?g|svg|png|woff2?)$/i,
-        use: 'file-loader'
-      }
-    ]
+        use: 'file-loader',
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -41,10 +41,10 @@ module.exports = {
       lang: 'en',
       meta: [
         { name: 'viewport', content: 'width=device-width,initial-scale=1' },
-        { charset: 'utf-8' }
+        { charset: 'utf-8' },
       ],
-      title: 'Manifold'
-    })
+      title: 'Manifold',
+    }),
   ],
   resolve: {
     alias: readdirSync(pathToRoot).reduce((obj, ref) => {
@@ -52,9 +52,9 @@ module.exports = {
       obj[alias] = path.resolve(__dirname, '..', rootDirectory, ref);
       return obj;
     }, {}),
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   node: {
-    fs: 'empty'
-  }
+    fs: 'empty',
+  },
 };
