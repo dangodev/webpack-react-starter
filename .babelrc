@@ -1,28 +1,8 @@
 {
-  "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-syntax-dynamic-import"
-  ],
-  "presets": [
-    [
-      "@babel/preset-env",
-      { "targets": { "browsers": ["last 2 versions", "> 1%"] } }
-    ],
-    "@babel/preset-react"
-  ],
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "env": {
     "test": {
-      "plugins": ["transform-dynamic-import"],
-      "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "targets": { "node": ">=8.6" }
-          }
-        ],
-        "@babel/preset-react"
-      ]
+      "presets": [["@babel/env", { "targets": { "node": "^10.12.0" } }], "@babel/react"]
     }
   }
 }
