@@ -1,5 +1,0 @@
-{
-  "name": "app-container",
-  "private": true,
-  "main": "./AppContainer.js"
-}

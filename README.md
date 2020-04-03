@@ -6,17 +6,7 @@
 👩‍🔬 Boilerplate for React and React Router 🚀 powered by webpack.
 
 This is the base from which I start all new projects. Ideal for people who like
-Create React App but need tighter control over Babel and Jest, or want to add
-SSR without drowning in configuration.
-
-This is the result of years of managing webpack configs, and I can start any
-React project imaginable with this base.
-
-# Concepts
-
-- Dynamic routing via [react-router](https://github.com/ReactTraining/react-router)
-- Code Splitting via [react-loadable](https://github.com/thejameskyle/react-loadable)
-- [package.json hack](https://codeburst.io/ab-using-package-json-over-index-js-8a7af1cd6550) to prevent `index.js`-es everywhere
+Create React App but need tighter control.
 
 # Setup
 
@@ -24,21 +14,29 @@ React project imaginable with this base.
 npm i
 ```
 
-# Development
+## Development
 
 ```
-npm run start
+npm start
 ```
 
-Dev server is available at `localhost:8080`. Edit `webpack.dev.js` to customize.
+Dev server is available at `localhost:8080`.
 
-# Building
+## Production Build
 
 ```
 npm run build
 ```
 
-Edit `webpack.prod.js` to customize.
+## Testing
 
+Testing uses 🃏 [Jest][jest] + 🐙 [React Testing Library][rtl]
+
+```
+npm test
+```
+
+[jest]: https://jestjs.io/
 [status]: https://david-dm.org/dangodev/optimize-image-loader/status.svg
 [status-dev]: https://david-dm.org/dangodev/optimize-image-loader/dev-status.svg
+[rtl]: https://testing-library.com/docs/react-testing-library/intro
